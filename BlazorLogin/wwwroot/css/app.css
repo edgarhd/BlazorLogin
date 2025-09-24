@@ -1,0 +1,36 @@
+html, body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+.navbar-brand {
+    font-size: 1.1rem;
+}
+
+.sidebar {
+    background-color: #2c3e50;
+    color: white;
+}
+
+main {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #1b6ec2;
+    border-color: #1861ac;
+}
+
+.survey-prompt {
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
+    display: inline-block;
+}
