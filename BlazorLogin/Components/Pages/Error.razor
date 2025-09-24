@@ -1,0 +1,26 @@
+@page "/Error"
+@using System.Diagnostics
+<PageTitle>Error</PageTitle>
+
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">An error occurred while processing your request.</h2>
+
+@if (!string.IsNullOrEmpty(requestId))
+{
+    <p>
+        <strong>Request ID:</strong> <code>@requestId</code>
+    </p>
+}
+
+<p>
+    <a href="https://aka.ms/blazor-server-project-template-errors" target="_blank">Show error details</a>
+</p>
+
+@code {
+    private string? requestId;
+
+    protected override void OnInitialized()
+    {
+        requestId = Activity.Current?.Id;
+    }
+}
