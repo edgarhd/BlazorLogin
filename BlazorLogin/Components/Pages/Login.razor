@@ -18,18 +18,20 @@
     <ValidationSummary />
     <div class="mb-3">
         <label class="form-label" for="username">Usuario</label>
-        <InputText id="username" class="form-control" @bind-Value="credentials.Username" autocomplete="username" />
+        <InputText id="username" class="form-control" @bind-Value="credentials.Username" @bind-Value:event="oninput" autocomplete="username" />
     </div>
     <div class="mb-3">
         <label class="form-label" for="password">Contraseña</label>
-        <InputText id="password" type="password" class="form-control" @bind-Value="credentials.Password" autocomplete="current-password" />
+        <InputText id="password" type="password" class="form-control" @bind-Value="credentials.Password" @bind-Value:event="oninput" autocomplete="current-password" />
     </div>
     <button class="btn btn-primary" type="submit">Ingresar</button>
 </EditForm>
 
 @code {
-    private readonly LoginModel credentials = new();
+    [SupplyParameterFromForm]
+    private LoginModel credentials { get; set; } = new();
     private string? ErrorMessage;
+
 
     protected override async Task OnInitializedAsync()
     {
@@ -42,6 +44,8 @@
 
     private async Task HandleLoginAsync()
     {
+        ErrorMessage = null;
+
         var success = await AuthProvider.LoginAsync(credentials.Username, credentials.Password);
         if (success)
         {
