@@ -1,17 +1,44 @@
-<nav class="nav-menu">
-    <div class="nav-item px-3">
-        <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-            Home
-        </NavLink>
-    </div>
-    <div class="nav-item px-3">
-        <NavLink class="nav-link" href="counter">
-            Counter
-        </NavLink>
-    </div>
-    <div class="nav-item px-3">
-        <NavLink class="nav-link" href="weather">
-            Weather
-        </NavLink>
-    </div>
-</nav>
+@inject SimpleAuthenticationStateProvider AuthProvider
+@inject NavigationManager Navigation
+
+<AuthorizeView>
+    <Authorized>
+        <nav class="nav-menu">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="home" Match="NavLinkMatch.All">
+                    Home
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="counter">
+                    Counter
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="weather">
+                    Weather
+                </NavLink>
+            </div>
+            <div class="nav-item px-3">
+                <button class="btn btn-link nav-link px-0" type="button" @onclick="Logout">Cerrar sesión</button>
+            </div>
+        </nav>
+    </Authorized>
+    <NotAuthorized>
+        <nav class="nav-menu">
+            <div class="nav-item px-3">
+                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    Login
+                </NavLink>
+            </div>
+        </nav>
+    </NotAuthorized>
+</AuthorizeView>
+
+@code {
+    private async Task Logout()
+    {
+        await AuthProvider.LogoutAsync();
+        Navigation.NavigateTo("/", true);
+    }
+}
