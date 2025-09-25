@@ -13,7 +13,7 @@
     <div class="alert alert-danger" role="alert">@ErrorMessage</div>
 }
 
-<EditForm Model="credentials" OnValidSubmit="HandleLoginAsync">
+<EditForm Model="credentials" OnValidSubmit="HandleLoginAsync" FormName="loginForm">
     <DataAnnotationsValidator />
     <ValidationSummary />
     <div class="mb-3">
